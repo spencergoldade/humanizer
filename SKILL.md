@@ -21,6 +21,7 @@ allowed-tools:
   - Grep
   - Glob
   - AskUserQuestion
+  - Task
 ---
 
 # Humanizer: Remove AI Writing Patterns
@@ -71,7 +72,7 @@ When given text to humanize:
 4. **Never truncate** - Your output must cover everything the original covers. Rewrite sentences, don't delete them. If the original has five paragraphs, the rewrite has five paragraphs.
 5. **Maintain voice** - Match the intended tone (formal, casual, technical, etc.)
 6. **Add soul** - Don't just remove bad patterns; inject actual personality
-7. **Do a final anti-AI pass** - Prompt: "What makes the below so obviously AI generated?" Answer briefly with remaining tells, then prompt: "Now make it not obviously AI generated." and revise
+7. **Do a final anti-AI pass via subagent critic.** In-context self-critique inherits the same blind spots that produced the draft. Dispatch a separate critic subagent (see Subagent Critic Loop section below) to identify remaining tells, then revise based on its findings. Loop up to 3 rounds or until the critic returns clean.
 
 
 ## Voice Calibration (Optional)
@@ -664,18 +665,80 @@ Both are tells. The fix is not to replace one extreme with the other — it is t
    - Uses specific details over vague claims
    - Maintains appropriate tone for context
    - Uses simple constructions (is/are/has) where appropriate
-5. Present a draft humanized version
-6. Prompt: "What makes the below so obviously AI generated?"
-7. Answer briefly with the remaining tells (if any)
-8. Prompt: "Now make it not obviously AI generated."
-9. **Mandatory em dash scan.** Before presenting the final version, grep the output for `—` and `–`. Any hit is a failure state. Rewrite the offending sentences per Section 14 and scan again until the count is zero.
-10. Present the final version (revised after the audit and the em dash scan)
+5. Produce a draft humanized version (not yet shown to the user)
+6. **Dispatch critic subagent** (see Subagent Critic Loop below). Pass the draft. Receive a list of remaining tells with quoted snippets.
+7. If the critic returns tells, revise and re-dispatch. Stop when the critic returns clean or after 3 rounds, whichever comes first.
+8. **Mandatory em dash scan.** Before presenting the final version, grep the output for `—` and `–`. Any hit is a failure state. Rewrite the offending sentences per Section 14 and scan again until the count is zero.
+9. Present the final version (revised after the critic loop and the em dash scan)
+
+
+## Subagent Critic Loop
+
+In-context self-critique is unreliable: the same context that produced the draft will not see the tells it just produced. A separate subagent with a fresh context and a skeptical prompt catches what the main agent misses.
+
+### When to dispatch
+Always, as step 6 of Process. Not optional for Mixed or Full pass strength (per the AI-iness Density Pre-check). For Light pass, one round of critic is enough.
+
+### How to dispatch
+
+Use the Task tool with `subagent_type: "general-purpose"`. Prompt template:
+
+```
+You are an AI-writing critic. Do NOT rewrite the text. Only identify remaining signs of AI-generated writing.
+
+The text below is a draft humanized version. It has already been through one pass of pattern-stripping, so obvious tells are mostly gone. Your job is to catch what the first pass missed.
+
+Check for these categories, in priority order:
+
+1. **Structural tells** (highest signal) — paragraph-shape uniformity, metronomic sentence-length rhythm, reflexive scaffolding (every section same shape), first-word predictability, over-explanation / previewing
+2. **Stance tells** — hedging-as-posture ("it's worth noting," "on balance," "that said"), false-balance framing, reflexive both-sidesing, Claude-4.7 register markers ("The Gap," "Ball's in your court," "huge value," "punchy" fragment openers)
+3. **Vocabulary tells** — AI words clustered in one paragraph, elegant variation (synonym cycling), "Based on" / "According to" openers, "delve," "leverage," "multifaceted"
+4. **Wikipedia-list tells** — the 35 patterns in the humanizer skill SKILL.md, looking for anything that slipped through
+
+For each tell, report:
+- Line or paragraph reference
+- Quoted snippet
+- Which category (1–4)
+- Severity (HIGH / MEDIUM / LOW)
+
+If the text is clean, say so explicitly: "CLEAN — no remaining tells at my detection threshold."
+
+Do not add commentary, do not suggest replacements, do not rewrite. Findings only.
+
+---
+
+TEXT TO CRITIQUE:
+
+[paste draft here]
+
+---
+
+VOICE CONTEXT (optional, if user provided a voice guide or sample):
+[paste relevant voice rules here so critic can flag un-voice phrasings]
+```
+
+### How to use critic output
+
+- **CLEAN** → proceed to em-dash scan and present final.
+- **Tells reported** → rewrite those specific passages. Do not pre-emptively rewrite anything the critic did not flag. Re-dispatch the critic on the revised draft. Stop after 3 rounds even if tells remain — at that point the remaining tells are either false positives or structural and need a different intervention.
+
+### What to keep in-context
+
+The draft itself, the critic's return, and your rewrite. Do not quote the critic's prompt back to the user. The user sees the final version plus a brief summary of what rounds ran.
+
+### Critic loop output contract
+
+In the final user-facing output, add one short line:
+
+> Critic loop: N rounds, M total tells caught, final round clean / 3-round timeout.
+
+This makes the loop's behaviour legible without dumping the full critic transcripts into the reply.
 
 ## Output Format
 
 Provide:
 1. Draft rewrite
-2. "What makes the below so obviously AI generated?" (brief bullets)
+2. Critic loop summary (one line: rounds run, total tells caught, final state)
 3. Final rewrite
 4. A brief summary of changes made (optional, if helpful)
 
