@@ -36,7 +36,7 @@ mkdir -p ~/.config/opencode/skills/humanizer
 cp SKILL.md ~/.config/opencode/skills/humanizer/
 ```
 
-> **Note:** OpenCode also scans `~/.claude/skills/` for compatibility, so a single clone into `~/.claude/skills/humanizer/` works for both tools.
+> **Note:** OpenCode also scans `~/.claude/skills/` for compatibility, so if you use both tools, a single clone into `~/.claude/skills/humanizer/` is enough.
 
 ## Usage
 
@@ -88,7 +88,7 @@ The skill also includes a final "obviously AI generated" audit pass and a second
 
 > "LLMs use statistical algorithms to guess what should come next. The result tends toward the most statistically likely result that applies to the widest variety of cases."
 
-## 32 Patterns Detected (with Before/After Examples)
+## 38 Patterns Detected (with Before/After Examples)
 
 ### Content Patterns
 
@@ -130,6 +130,17 @@ The skill also includes a final "obviously AI generated" audit pass and a second
 | 30 | **Diff-anchored writing** | "This was added to replace the old approach" | Describe what the code does, not what changed |
 | 31 | **Conditional frame stacking** | "If the argument holds, and if the reading is right, then perhaps..." | State the conclusion; reserve "if" for real analytical branches |
 | 32 | **Miscalibrated epistemic confidence** | Over: "decisively demonstrates fundamentally"; Over-hedge: "appears to have arguably may have somewhat" | Narrow the claim to what the evidence supports; don't replace over-assertion with hedges |
+| 33 | **Manufactured punchlines / staccato drama** | "It had no preference. No prior. No nostalgia." | Use varied sentence lengths and concrete claims |
+| 34 | **Aphorism formulas** | "Symmetry is the language of trust" | Replace the formula with the actual claim |
+| 35 | **Conversational rhetorical openers** | "Honestly? It depends..." | Remove the fake-candid setup |
+
+### Reliability and Evidence Patterns
+
+| # | Pattern | Before | After |
+|---|---------|--------|-------|
+| 36 | **Citation fabrication / hallucinated sources** | "According to Smith et al. (2023) in the Journal of..." | Verify every citation; remove unverifiable ones |
+| 37 | **Broken markup artifacts** | "significant (see `contentReference[oaicite:0]`)" | Strip AI markup; use native formatting |
+| 38 | **Era-specific vocabulary clustering** | 3+ AI words in one paragraph | Rewrite the whole paragraph, not single words |
 
 ### Communication Patterns
 
@@ -182,7 +193,10 @@ The skill also includes a final "obviously AI generated" audit pass and a second
 
 ## Version History
 
-- **2.6.0** - Added pattern 30 (diff-anchored writing), pattern 31 (conditional frame stacking), and pattern 32 (miscalibrated epistemic confidence); expanded rule 9 to cover "rather than" dismissals; expanded rule 14 to cover paired em dash bracketing; raising the total to 32 patterns
+- **2.8.0** - Merged upstream (blader/humanizer) v2.7.0–v2.8.0 into this fork. Added style/cadence patterns: manufactured punchlines (#33), aphorism formulas (#34), conversational rhetorical openers (#35); added upstream's Detection Guidance section; expanded #20 for offer-to-continue chatbot closers and #21 for speculative gap-filling. Kept this fork's work: AI-iness density pre-check, subagent critic loop, Positive Voice Guide, quality scoring, absolute em/en dash ban (#14), and reliability patterns — citation fabrication (#36), broken markup (#37), era-specific clustering (#38). 38 patterns total.
+- **2.6.0** (fork) - Added pattern 30 (diff-anchored writing), pattern 31 (conditional frame stacking), and pattern 32 (miscalibrated epistemic confidence); expanded rule 9 to cover "rather than" dismissals; expanded rule 14 to cover paired em dash bracketing.
+- **2.7.0** (upstream) - Added pattern #30 (diff-anchored writing); made em/en dashes a hard cut rather than "overuse"; expanded #21 to cover speculative gap-filling ("maintains a low profile").
+- **2.6.0** (upstream) - Cleanup pass: consolidated the duplicated workflow sections, gated the personality guidance to content where voice is wanted, removed the model-fingerprinting subsection, and condensed the worked example.
 - **2.5.1** - Added a passive-voice / subjectless-fragment rule, raising the total to 29 patterns
 - **2.5.0** - Added patterns for persuasive framing, signposting, and fragmented headers; expanded negative parallelisms to cover tailing negations; tightened wording around em dash overuse; fixed frontmatter wording to use "filler phrases"
 - **2.4.0** - Added voice calibration: match the user's personal writing style from samples
