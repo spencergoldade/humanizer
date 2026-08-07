@@ -6,9 +6,9 @@ description: |
   Removes signs of AI-generated writing from text based on Wikipedia's "Signs
   of AI writing" guide: inflated symbolism, promotional language, superficial
   -ing analyses, vague attributions, rule of three, AI vocabulary words,
-  passive voice, negative parallelisms, filler phrases, diff-anchored writing,
-  conditional frame stacking, and miscalibrated epistemic confidence. Enforces
-  an absolute ban on em dashes (—) and en dashes (–) in the final output.
+  passive voice, negative parallelisms, filler phrases, and diff-anchored
+  writing. Enforces an absolute ban on em dashes (—) and en dashes (–) in
+  the final output.
   Adaptive pass strength (light/mixed/full) selected by AI-iness density
   pre-check so human-first drafts are not over-corrected.
 license: MIT

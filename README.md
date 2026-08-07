@@ -110,7 +110,7 @@ Rewrites follow a no-fabrication rule: they never add facts, names, dates, or ci
 
 > "LLMs use statistical algorithms to guess what should come next. The result tends toward the most statistically likely result that applies to the widest variety of cases."
 
-## 38 Patterns Detected (with Before/After Examples)
+## 33 Patterns Detected (with Before/After Examples)
 
 ### Content Patterns
 
@@ -150,19 +150,9 @@ Rewrites follow a no-fabrication rule: they never add facts, names, dates, or ci
 | 28 | **Signposting announcements** | "Let's dive in", "Here's what you need to know" | Start with the content |
 | 29 | **Fragmented headers** | "## Performance" + "Speed matters." | Let the heading do the work |
 | 30 | **Diff-anchored writing** | "This was added to replace the old approach" | Describe what the code does, not what changed |
-| 31 | **Conditional frame stacking** | "If the argument holds, and if the reading is right, then perhaps..." | State the conclusion; reserve "if" for real analytical branches |
-| 32 | **Miscalibrated epistemic confidence** | Over: "decisively demonstrates fundamentally"; Over-hedge: "appears to have arguably may have somewhat" | Narrow the claim to what the evidence supports; don't replace over-assertion with hedges |
-| 33 | **Manufactured punchlines / staccato drama** | "It had no preference. No prior. No nostalgia." | Use varied sentence lengths and concrete claims |
-| 34 | **Aphorism formulas** | "Symmetry is the language of trust" | Replace the formula with the actual claim |
-| 35 | **Conversational rhetorical openers** | "Honestly? It depends..." | Remove the fake-candid setup |
-
-### Reliability and Evidence Patterns
-
-| # | Pattern | Before | After |
-|---|---------|--------|-------|
-| 36 | **Citation fabrication / hallucinated sources** | "According to Smith et al. (2023) in the Journal of..." | Verify every citation; remove unverifiable ones |
-| 37 | **Broken markup artifacts** | "significant (see `contentReference[oaicite:0]`)" | Strip AI markup; use native formatting |
-| 38 | **Era-specific vocabulary clustering** | 3+ AI words in one paragraph | Rewrite the whole paragraph, not single words |
+| 31 | **Manufactured punchlines / staccato drama** | "It had no preference. No prior. No nostalgia." | Use varied sentence lengths and concrete claims |
+| 32 | **Aphorism formulas** | "Symmetry is the language of trust" | Replace the formula with the actual claim |
+| 33 | **Conversational rhetorical openers** | "Honestly? It depends..." | Remove the fake-candid setup |
 
 ### Communication Patterns
 
