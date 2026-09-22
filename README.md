@@ -158,6 +158,17 @@ The writer supplied these notes with the draft, so the rewrite can use them: the
 >
 > I would go back, but in spring and with better shoes. Lisbon does not bend over backward to make things easy for you. I think I liked that, even when my legs disagreed.
 
+## Local fork notes
+
+This fork tracks `blader/humanizer` and adds four changes on top of it. Keep them when you merge upstream.
+
+- The skill description says the skill runs only on an explicit `humanizer`, `humanize`, or `/humanizer` request, so it does not fire on ordinary editing tasks.
+- `SKILL.md` has a "Positive voice guide (optional)" subsection under Voice. The `voice-dna` skill supplies that guide.
+- §8 states that the output rule against dashes holds even when a single dash is weak evidence on its own.
+- §25 has a second before/after pair for prose that describes what a change replaced.
+
+The Voice section cross-reference to the dash pattern reads §8 here. Upstream 3.0.0 has §6, which is the triad pattern.
+
 ## Sources
 
 - [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) is the source for the pattern list.
