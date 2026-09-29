@@ -1,2 +1,5 @@
 # AI codex index files (regenerated on session start and pre-commit)
 ai-codex/
+
+# Local instructions file the same tool writes; generated, never part of the skill
+CLAUDE.md
