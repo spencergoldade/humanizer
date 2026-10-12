@@ -124,7 +124,7 @@ The patterns are numbered by strength and frequency. The first five justify an e
 
 | # | Pattern | Before | After |
 |---|---------|--------|-------|
-| 6 | **Forced triads** | "innovation, inspiration, and insights"; three examples plus a lesson | Use the number of items the meaning needs |
+| 6 | **Forced triads** | "innovation, inspiration, and insights"; three examples plus a lesson; one triad repeated across a page | Use the number of items the meaning needs |
 | 7 | **Repeated sentence openings** | "She noted... She noted... She filed..." | Merge the sentences or change the subject |
 | 8 | **Dashes as the universal connector** (*weak alone*) | "institutions—not the people—yet this continues—" | Use periods, commas, colons, or parentheses; match a sample that uses dashes |
 | 9 | **Stacked qualifiers** (*weak alone*) | "could potentially possibly be argued" | Keep only qualifiers the source supports |
@@ -155,7 +155,7 @@ The patterns are numbered by strength and frequency. The first five justify an e
 
 | # | Pattern | Before | After |
 |---|---------|--------|-------|
-| 22 | **Chatbot residue** | "Great question! ... I hope this helps!" | Remove the wrapper and keep the content |
+| 22 | **Chatbot residue** | "Great question! ... I hope this helps!"; invisible characters around citations; a note to the author | Remove the wrapper and keep the content |
 | 23 | **Knowledge-limit disclaimers and guesses** | "While details are limited in available sources, it appears..." | State what the source shows, or remove the sentence |
 | 24 | **A heading repeated in the first sentence** | "## Performance" + "Speed matters." | Let the heading do the work |
 | 25 | **Writing about the document instead of its subject** | "This function was added to replace...", "compiled from...", "The table below compares..." | Describe the subject; state a convention only when the reader cannot see it |
@@ -192,12 +192,17 @@ The patterns are numbered by strength and frequency. The first five justify an e
 
 ## Local fork notes
 
-This fork tracks `blader/humanizer` and adds four changes on top of it. Keep them when you merge upstream.
+This fork tracks `blader/humanizer` and adds these changes on top of it. Keep them when you merge upstream.
 
 - The skill description says the skill runs only on an explicit `humanizer`, `humanize`, or `/humanizer` request, so it does not fire on ordinary editing tasks.
 - `SKILL.md` has a "Positive voice guide (optional)" subsection under Voice. The `voice-dna` skill supplies that guide.
 - §8 states that the output rule against dashes holds even when a single dash is weak evidence on its own.
 - §25 has a second before/after pair for prose that describes what a change replaced.
+- Voice asks the rewrite to match the writer's rate of contractions.
+- §6 counts one stock triad repeated across a page as the same tell.
+- §22 watches for zero-width spaces or other invisible characters around citations, and for notes to the author left in published text.
+
+`SKILL.md` sits at the validator's 5,500-word cap. Upstream text that grows it needs a matching cut, taken from the fork's own Positive voice guide subsection or §8 sentence first.
 
 The Voice section cross-reference to the dash pattern reads §8 here. Upstream 3.0.0 has §6, which is the triad pattern.
 
