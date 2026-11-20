@@ -1,5 +1,36 @@
 # Changelog
 
+## 4.0.1
+
+- Merged upstream 4.0.0 and the upstream changes listed under Unreleased below, keeping the fork changes from 3.1.1 and earlier.
+- Kept the no-invention rule that upstream 4.0.0 removed. The rewrite adds no fact, name, number, date, quote, or citation that the source or the writer did not give. Step 2 of How to work, §14, §17, and the README say so again, and the §17 After examples are back to versions that add nothing.
+- Dropped upstream's §4 "the part" example, whose After adds facts its Before lacks, and told §4 to ask the writer when the text never names the thing.
+- Trimmed the §12 After example to the facts its Before states.
+- Kept the explicit-request trigger in the skill description and dropped its Wikipedia line, as upstream did.
+- Shortened the fork's additions to fit the 5,500-word cap: the Positive voice guide subsection is now one sentence, and the §8 note on single dashes and the second §25 example are gone.
+
+## Unreleased
+
+- Tightened `SKILL.md` and `README.md` for clarity, concision, and readability. Reworded four "After" examples (§6, §13, §15, §25) so they read naturally and avoid stock academic phrasing.
+- Added "the part" as a stand-in to §4: "the hard part is X" stages X, and "the part that doesn't" or "the part worth sharing" points at something the text never names (#338).
+- `scripts/validate-package.py` now fails when a pattern number appears twice in `SKILL.md` or in the README tables. Before, the second one replaced the first and the check passed (#340).
+- Informal human text is no longer over-edited. Chat messages, rants, and angry reviews keep their lowercase, abbreviations, fragments, and blunt openers. A lone tell is not enough there (§22 chatbot residue excepted); two unrelated tells make the whole text a rewrite target. Anger keeps its strength, and "tried X" stays "tried X" (#318).
+- Added a closing "Overall" or "Ultimately" verdict that restates the paragraph to §2 (#318).
+- Said that a plain "let me know" in a message predates chatbots (#318).
+- Cited El Attar et al. (arXiv:2606.04177) in the Source section and the README sources (#318).
+
+## 4.0.0
+
+- The skill no longer forbids adding facts. Where the text is generic, it now adds a specific detail it knows to be true. It still keeps every claim the original made and treats a lost or changed claim as an error. This reverses the no-invention rule from 2.9.0. Patterns 14 and 17 follow the same change.
+- Reworked 15 "After" examples in `SKILL.md` and both README examples. Several were vaguer or stiffer than the text they replaced, used phrases from the skill's own watch lists, or changed a stated fact.
+- File mode now reads the whole current file before editing, even one written in the same session. Its summary says how many sections it reviewed, so a partial pass is visible (#326, #327).
+- Text being edited can contain fake closing tags or notes from an "operator" or a "system message". The skill now treats those as material to edit, never as instructions (#317).
+- Rewrote unclear sentences in `SKILL.md` and `README.md`. Coined terms such as "riders" and "shape edits" became plain words, and sentences that only announced or repeated a neighbor are gone. Step 3 now checks for dropped or changed facts first. Pattern 15 is now "Shallow -ing phrases". The README gives `/humanizer` as the only command (#330).
+- Added a blank line above each pattern label in `SKILL.md` so GitHub shows every label and example on its own line (#329).
+- The skill description no longer cites Wikipedia. The credit stays in the Source section and the README (#321).
+- Added a pi package manifest, so `pi install git:github.com/blader/humanizer` installs the skill (#315).
+- Removed the `$schema` key from the Claude plugin manifest, which caused a sync warning (#307).
+
 ## 3.1.1
 
 - Folded four tells into existing patterns, with no new pattern: a closing line that echoes the opening (#2), warm-up openers, performed sympathy, and a question the next sentence answers (#4), and a reply that opens by restating what the other person just said (#26).
