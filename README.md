@@ -214,6 +214,7 @@ This fork tracks `blader/humanizer` and adds these changes on top of it. Keep th
 - §2, §4, and §26 keep the tells folded in from upstream PR #308: a last line that echoes the first, warm-up openers and a question the next sentence answers, and an opening that restates what the other person said.
 - §6 counts one stock triad repeated across a page as the same tell.
 - §22 watches for invisible characters around citations and for notes to the author.
+- `.claude-plugin/icon.png` is a fork-only plugin icon (a speech bubble holding lines of text).
 - The rewrite adds no fact, name, number, date, quote, or citation that the source or the writer did not give. Upstream 4.0.0 reversed this rule ("add a specific detail you know to be true"); the fork keeps it in step 2 of How to work, in §4, §14, and §17, and in "How it works" above. The §17 After examples are the fork's, which add nothing. The fork drops upstream's §4 "the part" example, whose After adds facts its Before lacks, and its §12 After keeps only facts its Before states.
 
 `SKILL.md` must stay at or under the validator's 5,500-word cap. Upstream 4.0.0 alone is about 5,400 words, so the 4.0.1 merge shortened the fork's additions: the voice guide subsection went from a paragraph to one sentence, and the §8 note on single dashes and the §25 second example were dropped. Upstream text that grows the file needs a matching cut from the fork's additions.

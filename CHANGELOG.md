@@ -8,6 +8,7 @@
 - Trimmed the §12 After example to the facts its Before states.
 - Kept the explicit-request trigger in the skill description and dropped its Wikipedia line, as upstream did.
 - Shortened the fork's additions to fit the 5,500-word cap: the Positive voice guide subsection is now one sentence, and the §8 note on single dashes and the second §25 example are gone.
+- Added a plugin icon at `.claude-plugin/icon.png`, so `claude plugin validate` no longer warns that it is missing.
 
 ## Unreleased
 
